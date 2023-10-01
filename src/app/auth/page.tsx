@@ -25,7 +25,7 @@ export default async function Auth() {
   return (
     <div className='w-full h-screen flex items-start'>
       <div className='relative w-1/6 md:w-1/2 h-full flex flex-col'>
-        <Image
+        {/* <Image
           src='/auth-cover.jpeg'
           alt='auth-background'
           className='w-full h-full object-cover'
@@ -33,7 +33,7 @@ export default async function Auth() {
           placeholder='blur'
           blurDataURL='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOU07R+AAACUwFkQasmgQAAAABJRU5ErkJggg=='
           loading='lazy'
-        />
+        /> */}
       </div>
       <div className='w-full h-full bg-slate-800 flex flex-col p-5 md:py-20 md:px-56 justify-center'>
         <h1 className='text-xl font-bold text-gray-300 border-b-4 border-gray-300 w-48'>
