@@ -4,14 +4,17 @@ import useAuth from '@/components/hooks/useAuth'
 import SignInWithSocials from '@/components/pages/auth/signInWithSocials'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function Auth() {
   const { user, error } = useAuth()
   const { push } = useRouter()
 
-  if (user) {
-    push('/')
-  }
+  useEffect(() => {
+    if (user) {
+      return push('/')
+    }
+  }, [user])
 
   return (
     <div className='w-full h-screen flex items-start'>
