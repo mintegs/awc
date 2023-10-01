@@ -5,7 +5,9 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios'
 
-export default function fetcher(baseURL: string) {
+export default function fetcher(
+  baseURL: string = process.env.NEXT_PUBLIC_API_SERVICE || ''
+) {
   const axiosInstance: AxiosInstance = axios.create({
     baseURL,
   })

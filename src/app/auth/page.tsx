@@ -1,8 +1,14 @@
+'use client'
 import SignInForm from '@/components/forms/signInForm'
+import useAuth from '@/components/hooks/useAuth'
 import SignInWithSocials from '@/components/pages/auth/signInWithSocials'
 import Image from 'next/image'
 
 export default function Auth() {
+  const { user, error } = useAuth()
+
+  console.log(user, error)
+
   return (
     <div className='w-full h-screen flex items-start'>
       <div className='relative w-1/6 md:w-1/2 h-full flex flex-col'>
