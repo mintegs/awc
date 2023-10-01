@@ -3,11 +3,15 @@ import SignInForm from '@/components/forms/signInForm'
 import useAuth from '@/components/hooks/useAuth'
 import SignInWithSocials from '@/components/pages/auth/signInWithSocials'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 export default function Auth() {
   const { user, error } = useAuth()
+  const { push } = useRouter()
 
-  console.log(user, error)
+  if (user) {
+    push('/')
+  }
 
   return (
     <div className='w-full h-screen flex items-start'>
