@@ -7,7 +7,5 @@ export default function useAuth() {
     return fetcher().get('/user')
   })
 
-  console.log('data?.data', data?.data, data)
-
   return { user: data?.data, error, loading: !data && !error }
 }

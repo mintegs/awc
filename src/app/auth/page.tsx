@@ -5,7 +5,11 @@ import SignInWithSocials from '@/components/pages/auth/signInWithSocials'
 import { redirect } from 'next/navigation'
 
 export default function Auth() {
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
+
+  if (loading) {
+    return <h1>loading....</h1>
+  }
 
   if (user) {
     redirect('/')
