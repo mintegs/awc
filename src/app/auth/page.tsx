@@ -1,20 +1,26 @@
-'use client'
 import SignInForm from '@/components/forms/signInForm'
-import useAuth from '@/components/hooks/useAuth'
 import SignInWithSocials from '@/components/pages/auth/signInWithSocials'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
 
-export default function Auth() {
-  const { user, error } = useAuth()
-  const { push } = useRouter()
+const fetchUser = async () => {
+  const res = await fetch('https://api.mintegs.com/user', {
+    credentials: 'include',
+    next: {
+      revalidate: 30,
+    },
+  })
 
-  useEffect(() => {
-    if (user) {
-      return push('/')
-    }
-  }, [user])
+  if (res.ok) {
+    const data = await res.json()
+    return data
+  }
+
+  return null
+}
+
+export default async function Auth() {
+  const user = await fetchUser()
+  console.log('user', user)
 
   return (
     <div className='w-full h-screen flex items-start'>
@@ -40,6 +46,7 @@ export default function Auth() {
               ورود از طریق شبکه‌های اجتماعی
             </span>
             <SignInWithSocials />
+            <p className='bg-white text-gray-800 p-5'>{JSON.stringify(user)}</p>
           </div>
         </div>
       </div>
