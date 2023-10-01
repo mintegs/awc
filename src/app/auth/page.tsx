@@ -1,26 +1,15 @@
+'use client'
 import SignInForm from '@/components/forms/signInForm'
+import useAuth from '@/components/hooks/useAuth'
 import SignInWithSocials from '@/components/pages/auth/signInWithSocials'
-import Image from 'next/image'
+import { redirect } from 'next/navigation'
 
-const fetchUser = async () => {
-  const res = await fetch('https://api.mintegs.com/user', {
-    credentials: 'include',
-    next: {
-      revalidate: 30,
-    },
-  })
+export default function Auth() {
+  const { user } = useAuth()
 
-  if (res.ok) {
-    const data = await res.json()
-    return data
+  if (user) {
+    redirect('/')
   }
-
-  return null
-}
-
-export default async function Auth() {
-  const user = await fetchUser()
-  console.log('user', user)
 
   return (
     <div className='w-full h-screen flex items-start'>
