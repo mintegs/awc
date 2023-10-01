@@ -1,27 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html[lang='fa'] {
+  direction: rtl;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'Baloo Bhaijaan 2', cursive;
+  @apply first-letter:capitalize;
 }
+
+/* Forms start */
+.form-input {
+  @apply w-full rounded-md border border-slate-600 py-3 px-5 bg-slate-600  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 transition;
+}
+.form-input.ltr {
+  direction: ltr;
+}
+.form-input.disabled {
+  @apply cursor-not-allowed placeholder-gray-500 bg-gray-500 bg-opacity-10 text-slate-400;
+}
+.form-input.birthday {
+  @apply border-0 bg-gray-700 bg-opacity-0;
+}
+/* Forms end */
