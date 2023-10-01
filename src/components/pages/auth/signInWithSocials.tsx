@@ -1,5 +1,5 @@
 'use client'
-import { oauthGithubUrl, oauthGoogleUrl } from '@/app/lib/generateOAuthUrl'
+import { oauthGithubUrl, oauthGoogleUrl } from '@/lib/generateOAuthUrl'
 import { useRouter } from 'next/navigation'
 import { FaGithub, FaGoogle } from 'react-icons/fa'
 
