@@ -1,5 +1,11 @@
 'use client'
 
+import DashboardLayout from '@/components/layout/dashboard'
+
 export default function Dashboard() {
-  return <h1>Dashboard</h1>
+  return (
+    <DashboardLayout>
+      <h1>Dashboard</h1>
+    </DashboardLayout>
+  )
 }
