@@ -1,11 +1,10 @@
 import type { Metadata } from 'next'
-import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'مینتگس',
+  title: 'داشبورد',
 }
 
-export default function RootLayout({
+export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode
