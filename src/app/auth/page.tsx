@@ -1,20 +1,23 @@
 'use client'
 import SignInForm from '@/components/forms/signInForm'
+import useAuth from '@/components/hooks/useAuth'
 import SignInWithSocials from '@/components/pages/auth/signInWithSocials'
+import Loading from '@/components/shared/loading'
+import { redirect } from 'next/navigation'
 
 export default function Auth() {
-  // const { user, loading } = useAuth()
+  const { user, loading } = useAuth()
 
-  // if (loading) {
-  //   return <Loading />
-  // }
+  if (loading) {
+    return <Loading />
+  }
 
-  // if (user) {
-  //   redirect('/')
-  // }
+  if (user) {
+    redirect('/')
+  }
 
   return (
-    <div className='w-full h-screen items-start bg-gradient-to-r from-sky-800 from-10% to-90% to-slate-800'>
+    <div className='w-full h-screen items-start bg-slate-800'>
       <div className='grid grid-cols-12 gap-4 place-content-center justify-center relative right-0 top-[6.5rem] md:top-[25%]'>
         <div className='col-1 md:col-span-3'></div>
         <div className='col-span-10 md:col-span-6'>
