@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'داشبورد',
+  title: 'دسته بندی‌ها',
 }
 
-export default function DashboardLayout({
+export default function CategoryLayout({
   children,
 }: {
   children: React.ReactNode
