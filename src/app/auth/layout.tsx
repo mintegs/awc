@@ -9,9 +9,6 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <html lang='fa'>
-      <body>{children}</body>
-    </html>
-  )
+  return <>{children}</>
 }
+ 
