@@ -23,7 +23,10 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
   if (!user) {
     redirect('/auth')
-  } else if (user?.role !== 'ADMIN') {
+  } else if (
+    user?.role !== 'ADMIN' &&
+    process.env.NEXT_PUBLIC_NODE_ENV === 'production'
+  ) {
     redirect('/403')
   }
 

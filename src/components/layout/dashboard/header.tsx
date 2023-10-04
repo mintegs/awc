@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { Dispatch, SetStateAction } from 'react'
+import UserMenu from './userMenu'
 
 export default function Header({
   sidebarStatus,
@@ -49,7 +50,7 @@ export default function Header({
         <ul className='flex items-center flex-shrink-0'>
           {/* <Theme /> */}
           {/* <Language /> */}
-          {/* <UserMenu /> */}
+          <UserMenu />
         </ul>
       </div>
     </div>

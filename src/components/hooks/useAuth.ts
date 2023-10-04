@@ -4,6 +4,10 @@ import useSWR from 'swr'
 
 export default function useAuth() {
   const { data, error } = useSWR('current_user', () => {
+    if (process.env.NEXT_PUBLIC_NODE_ENV !== 'production') {
+      return fetcher('https://jsonplaceholder.typicode.com/users').get('/1')
+    }
+
     return fetcher().get('/user')
   })
 
