@@ -1,5 +1,7 @@
 'use client'
-import { usePathname } from 'next/navigation'
+import useAuth from '@/components/hooks/useAuth'
+import Loading from '@/components/shared/loading'
+import { redirect, usePathname } from 'next/navigation'
 import { ReactNode, useEffect, useState } from 'react'
 import Header from './header'
 import Sidebar from './sidebar'
@@ -7,12 +9,23 @@ import Sidebar from './sidebar'
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [sidebarStatus, setSidebarStatus] = useState(false)
   const pathName = usePathname()
+  const { user, loading } = useAuth()
 
   useEffect(() => {
     if (sidebarStatus) {
       setSidebarStatus(false)
     }
   }, [pathName])
+
+  if (loading) {
+    return <Loading />
+  }
+
+  if (!user) {
+    redirect('/auth')
+  } else if (user?.role !== 'ADMIN') {
+    redirect('/403')
+  }
 
   return (
     <div className='flex h-screen'>
