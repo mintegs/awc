@@ -3,6 +3,8 @@ import useAuth from '@/components/hooks/useAuth'
 import { Menu, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import { Fragment } from 'react'
+import { LuLogOut } from 'react-icons/lu'
+import { FaRegUser } from 'react-icons/fa'
 
 export default function UserMenu() {
   const { user } = useAuth()
@@ -25,6 +27,7 @@ export default function UserMenu() {
             </span>
           </Menu.Button>
         </div>
+
         <Transition
           as={Fragment}
           enter='transition ease-out duration-100'
@@ -34,17 +37,18 @@ export default function UserMenu() {
           leaveFrom='transform opacity-100 scale-100'
           leaveTo='transform opacity-0 scale-95'
         >
-          <Menu.Items className='-top-2 md:top-4 transform -translate-y-full md:translate-y-1/2 absolute left-0 origin-top-right lg:origin-top-left mb-2 w-56 divide-y divide-gray-100 rounded-md bg-slate-800 bg-opacity-70 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
-            <div className='px-1 py-1'>
+          <Menu.Items className='-top-2 md:top-1 transform -translate-y-full md:translate-y-1/2 absolute left-0 origin-top-right lg:origin-top-left mb-2 w-56 divide-y divide-gray-100 rounded-md bg-slate-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border-2 border-blue-400'>
+            <div className='p-4'>
               <Menu.Item>
                 {({ active }) => (
                   <Link
                     href='/settings/profile'
                     className={`${
-                      active ? 'bg-blue-600' : ''
-                    } text-white flex w-full items-center rounded-md px-2 py-2 mb-2 last:mb-0 text-sm`}
+                      active ? 'bg-slate-600 text-slate-200' : 'text-white'
+                    } font-semibold flex w-full items-center rounded-md px-2 py-2 mb-2 last:mb-0 text-base`}
                   >
-                    profile_information
+                    <FaRegUser className='h-5 w-5 ml-3' />
+                    پروفایل
                   </Link>
                 )}
               </Menu.Item>
@@ -53,9 +57,10 @@ export default function UserMenu() {
                   <Link
                     href={`${process.env.NEXT_PUBLIC_AUTH_SERVICE}/user/sign-out`}
                     className={`${
-                      active ? 'bg-blue-600' : ''
-                    } text-white flex w-full items-center rounded-md px-2 py-2 mb-2 last:mb-0 text-sm`}
+                      active ? 'bg-slate-600 text-slate-200' : 'text-white'
+                    } font-semibold flex w-full items-center rounded-md px-2 py-2 mb-2 last:mb-0 text-base`}
                   >
+                    <LuLogOut className='h-5 w-5 ml-3' />
                     خروج
                   </Link>
                 )}
