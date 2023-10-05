@@ -2,22 +2,19 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
+import { FaTableList } from 'react-icons/fa6'
+import { RiDashboardFill } from 'react-icons/ri'
 
 const routes = [
   {
-    name: 'dashboard',
+    name: 'داشبورد',
     url: '/dashboard',
-    // icon: <AdjustmentsVerticalIcon className='h-6 w-6' />,
+    icon: <RiDashboardFill className='h-6 w-6' />,
   },
   {
-    name: 'cryptocurrencies',
-    url: '/cryptocurrencies',
-    // icon: <CurrencyDollarIcon className='h-6 w-6' />,
-  },
-  {
-    name: 'users management',
-    url: '/users',
-    // icon: <UsersIcon className='h-6 w-6' />,
+    name: 'دسته بندی‌ها',
+    url: '/dashboard/categories',
+    icon: <FaTableList className='h-6 w-6' />,
   },
   // {
   //   name: 'discusses',
@@ -54,7 +51,7 @@ export default function Sidebar({
       >
         <div className='pb-2'>
           <ul className='mt-2 text-gray-400'>
-            {routes.map(({ name, url }) => (
+            {routes.map(({ name, url, icon }) => (
               <li
                 key={name}
                 className={`relative mx-2 mb-2 rounded-lg group ${
@@ -71,7 +68,7 @@ export default function Sidebar({
                       : 'group-hover:text-slate-300'
                   }`}
                 >
-                  {/* {icon} */}
+                  {icon}
                   <span className='mr-4'>{name}</span>
                 </Link>
               </li>
