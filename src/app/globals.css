@@ -25,4 +25,7 @@ body {
 .form-input.birthday {
   @apply border-0 bg-gray-700 bg-opacity-0;
 }
+.search-input {
+  @apply w-full rounded-md border border-slate-700 py-3 px-5 bg-slate-700  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition;
+}
 /* Forms end */
