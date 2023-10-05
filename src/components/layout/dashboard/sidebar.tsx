@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
 import { FaTableList } from 'react-icons/fa6'
+import { MdArticle } from 'react-icons/md'
 import { RiDashboardFill } from 'react-icons/ri'
 
 const routes = [
@@ -16,11 +17,11 @@ const routes = [
     url: '/dashboard/categories',
     icon: <FaTableList className='h-6 w-6' />,
   },
-  // {
-  //   name: 'discusses',
-  //   url: '/user/discusses',
-  //   icon: <ChatBubbleLeftRightIcon className="h-6 w-6" />,
-  // },
+  {
+    name: 'مقالات',
+    url: '/dashboard/articles',
+    icon: <MdArticle className='h-6 w-6' />,
+  },
   // {
   //   name: 'account_information',
   //   url: '/user/account',
