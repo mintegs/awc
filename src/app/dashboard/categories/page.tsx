@@ -1,6 +1,5 @@
 'use client'
 
-import CategoryForm from '@/components/forms/categoryForm'
 import DashboardLayout from '@/components/layout/dashboard'
 import AddCategory from '@/components/pages/categories/addCategory'
 import CategoryList from '@/components/pages/categories/categoryList'
@@ -23,7 +22,6 @@ export default function Categories() {
         </div>
       </div>
       <CategoryList />
-      <CategoryForm />
     </DashboardLayout>
   )
 }

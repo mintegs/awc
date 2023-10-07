@@ -11,11 +11,10 @@ export default function CategoryForm() {
           title: '',
         }}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
-          console.log('values')
+          console.log('values', values)
         }}
       >
         {({ dirty, isValid, isSubmitting }) => {
-          console.log('isSubmitting', isSubmitting)
           return (
             <>
               <Form>
@@ -32,9 +31,8 @@ export default function CategoryForm() {
                     {isSubmitting ? (
                       <SpinnerSvg classNames={`h-5 w-5 text-white`} />
                     ) : (
-                      <></>
+                      'ثبت'
                     )}
-                    ثبت
                   </button>
                 </div>
               </Form>

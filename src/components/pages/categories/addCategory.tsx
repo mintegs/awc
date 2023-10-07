@@ -1,4 +1,6 @@
 'use client'
+import CategoryForm from '@/components/forms/categoryForm'
+import Modal from '@/components/shared/modal'
 import { useState } from 'react'
 
 export default function AddCategory() {
@@ -11,13 +13,15 @@ export default function AddCategory() {
       >
         ثبت دسته بندی جدید
       </button>
-      {/* {showModal ? (
-        <ActionCategory
+      {showModal ? (
+        <Modal
           show={showModal}
-          setShow={setShowModal}
-          titleModal='ایجاد دسته جدید'
-        />
-      ) : null} */}
+          close={setShowModal}
+          title='ایجاد دسته جدید'
+        >
+          <CategoryForm />
+        </Modal>
+      ) : null}
     </>
   )
 }
