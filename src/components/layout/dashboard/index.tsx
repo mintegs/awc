@@ -3,6 +3,7 @@ import useAuth from '@/components/hooks/useAuth'
 import Loading from '@/components/shared/loading'
 import { redirect, usePathname } from 'next/navigation'
 import { ReactNode, useEffect, useState } from 'react'
+import { Toaster } from 'react-hot-toast'
 import Header from './header'
 import Sidebar from './sidebar'
 
@@ -45,6 +46,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           <div className='container px-3 md:px-6 mx-auto mt-5'>{children}</div>
         </main>
       </div>
+      <Toaster position='bottom-left' />
     </div>
   )
 }
