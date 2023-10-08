@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  return NextResponse.redirect(new URL('/auth', request.url))
+  return NextResponse.redirect(new URL('/404', request.url))
 }
 
 // See "Matching Paths" below to learn more
