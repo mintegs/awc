@@ -1,3 +1,5 @@
+import CategoryForm from '@/components/forms/categoryForm'
+import Modal from '@/components/shared/modal'
 import { useState } from 'react'
 import { FiEdit2, FiTrash2 } from 'react-icons/fi'
 
@@ -20,13 +22,15 @@ export default function CategoryItem({ item }: { item: any }) {
           >
             <FiEdit2 size={20} />
           </button>
-          {/* <ActionCategory
-            show={showEditModal}
-            setShow={setShowEditModal}
-            data={item}
-            titleModal='ویرایش دسته'
-            submitIcon={<MdOutlineDoneOutline className='w-5 h-5' />}
-          /> */}
+          {showEditModal ? (
+            <Modal
+              show={showEditModal}
+              close={setShowEditModal}
+              title='ویرایش دسته جدید'
+            >
+              <CategoryForm data={item} />
+            </Modal>
+          ) : null}
           <button
             onClick={() => console.log(item.title)}
             className='rounded-full hover:bg-red-200 text-red-400 hover:text-red-600 p-1'

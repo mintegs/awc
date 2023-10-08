@@ -1,32 +1,63 @@
 'use client'
-import { Form, Formik } from 'formik'
-import Input from '../shared/input'
+import fetcher from '@/lib/fetcher'
+import { Field, Form, Formik } from 'formik'
+import * as yup from 'yup'
 import SpinnerSvg from '../svg/spinnerSvg'
 
-export default function CategoryForm() {
+const categorySchema = yup.object().shape({
+  title: yup
+    .string()
+    .required('عنوان دسته را وارد کنید')
+    .min(3, 'عنوان کمتر از ۳ کاراکتر نمی‌تواند باشد')
+    .max(30, 'عنوان نباید از ۳۰ کاراکتر بیشتر باشد'),
+})
+
+export default function CategoryForm({ data }: { data: any }) {
   return (
     <div className='mt-5 text-right'>
       <Formik
         initialValues={{
-          title: '',
+          id: data?.id || undefined,
+          title: data?.title || '',
         }}
+        validationSchema={categorySchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
+          setSubmitting(true)
+          try {
+            const res = await fetcher().post('/admin/categories', {
+              values,
+            })
+
+            // update list
+
+            // toaster
+            setSubmitting(false)
+            resetForm()
+          } catch (error) {
+            setSubmitting(false)
+            // toaster
+          }
           console.log('values', values)
         }}
       >
-        {({ dirty, isValid, isSubmitting }) => {
+        {({ dirty, isValid, isSubmitting, errors }) => {
           return (
             <>
               <Form>
                 <div className='flex justify-between items-center'>
-                  <Input
+                  <Field
+                    id='title'
                     name='title'
                     type='text'
                     placeholder='عنوان'
+                    className='form-input'
                   />
                   <button
                     type='submit'
-                    className='rounded-md border border-transparent bg-blue-700 mr-2 px-4 py-3 text-base font-medium text-white hover:bg-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'
+                    className={`${
+                      !(dirty && isValid) ? 'cursor-not-allowed' : ''
+                    } rounded-md border border-transparent bg-blue-700 mr-2 px-4 py-3 text-base font-medium text-white hover:bg-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2`}
+                    disabled={!(dirty && isValid)}
                   >
                     {isSubmitting ? (
                       <SpinnerSvg classNames={`h-5 w-5 text-white`} />
@@ -34,6 +65,9 @@ export default function CategoryForm() {
                       'ثبت'
                     )}
                   </button>
+                </div>
+                <div className='text-red-500 text-sm'>
+                  {errors.title && <p>{errors['title'] as string}</p>}
                 </div>
               </Form>
             </>
