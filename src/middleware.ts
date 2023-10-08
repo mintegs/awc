@@ -8,7 +8,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  return NextResponse.redirect(new URL('/404', request.url))
+  return NextResponse.json(
+    { success: false, message: 'authentication failed' },
+    { status: 401 }
+  )
 }
 
 // See "Matching Paths" below to learn more
