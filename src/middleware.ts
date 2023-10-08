@@ -4,7 +4,11 @@ import { NextResponse } from 'next/server'
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   console.log('has cookie', request.cookies.has('mintegs_token'))
-  return NextResponse.next()
+  if (request.cookies.has('mintegs_token')) {
+    return NextResponse.next()
+  }
+
+  return NextResponse.redirect('/auth')
 }
 
 // See "Matching Paths" below to learn more
