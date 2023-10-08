@@ -12,7 +12,7 @@ const categorySchema = yup.object().shape({
     .max(30, 'عنوان نباید از ۳۰ کاراکتر بیشتر باشد'),
 })
 
-export default function CategoryForm({ data }: { data: any }) {
+export default function CategoryForm({ data }: { data?: any }) {
   return (
     <div className='mt-5 text-right'>
       <Formik
