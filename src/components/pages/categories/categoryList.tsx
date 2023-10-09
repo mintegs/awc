@@ -1,5 +1,4 @@
 import useCategories from '@/components/hooks/useCategories'
-import CategoryItem from './categoryItem'
 
 // const categories = [
 //   {
@@ -18,6 +17,8 @@ import CategoryItem from './categoryItem'
 
 export default function CategoryList() {
   const { categories, loading } = useCategories()
+
+  console.log('categories', categories)
 
   if (loading) {
     return <p>loading...</p>
@@ -50,12 +51,12 @@ export default function CategoryList() {
             </tr>
           </thead>
           <tbody>
-            {categories.map((item: any) => (
+            {/* {categories.map((item: any) => (
               <CategoryItem
                 key={item.title}
                 item={item}
               />
-            ))}
+            ))} */}
           </tbody>
         </table>
       </div>
