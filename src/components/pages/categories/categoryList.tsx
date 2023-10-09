@@ -1,4 +1,5 @@
 import useCategories from '@/components/hooks/useCategories'
+import CategoryItem from './categoryItem'
 
 // const categories = [
 //   {
@@ -51,12 +52,12 @@ export default function CategoryList() {
             </tr>
           </thead>
           <tbody>
-            {/* {categories.map((item: any) => (
+            {categories.map((item: any) => (
               <CategoryItem
                 key={item.title}
                 item={item}
               />
-            ))} */}
+            ))}
           </tbody>
         </table>
       </div>

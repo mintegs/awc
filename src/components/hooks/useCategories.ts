@@ -20,5 +20,5 @@ export default function useCategories() {
     }
   )
 
-  return { categories: data?.data, error, loading: !data && !error }
+  return { categories: data?.data.categories, error, loading: !data && !error }
 }
