@@ -11,5 +11,10 @@ export default function Home() {
   const theme = cookieStore.get('mintegs_token')
   console.log('theme', theme)
 
-  return <h1>home page</h1>
+  return (
+    <div>
+      <h1>home page</h1>
+      <p>{JSON.stringify(theme)}</p>
+    </div>
+  )
 }
