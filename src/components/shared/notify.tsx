@@ -2,14 +2,20 @@
 import toast from 'react-hot-toast'
 import { MdClose } from 'react-icons/md'
 
-export default function customToaster(message: string, close: boolean = false) {
+export default function customToaster(
+  message: string,
+  className?: string,
+  close: boolean = false
+) {
   return toast.custom(
     (t) => (
       <div
         style={{
           opacity: t.visible ? 1 : 0,
         }}
-        className='bg-slate-700 px-3 py-2 text-base text-gray-300 rounded-md flex items-center ease-in-out duration-100 shadow-2xl shadow-slate-900/50'
+        className={`${
+          className ? className : 'bg-slate-700'
+        } px-3 py-2 text-base text-gray-300 rounded-md flex items-center ease-in-out duration-100 shadow-2xl shadow-slate-900/50`}
       >
         <span>{message}</span>
         {close ? (

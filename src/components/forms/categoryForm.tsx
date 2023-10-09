@@ -32,14 +32,14 @@ export default function CreateCategoryForm({ data }: { data?: any }) {
             // update list
 
             // toaster
-            customToaster('دسته باموفقیت ثبت شد', true)
+            customToaster('دسته باموفقیت ثبت شد', 'bg-green-700', true)
             setSubmitting(false)
             resetForm()
           } catch (error: any) {
             setSubmitting(false)
 
             // toaster
-            customToaster(error.response.data.message)
+            customToaster(error.response.data.message, 'bg-red-700')
           }
           console.log('values', values)
         }}
