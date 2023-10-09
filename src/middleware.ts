@@ -11,7 +11,7 @@ export function middleware(request: NextRequest) {
     }
     return NextResponse.next()
   } else {
-    return NextResponse.redirect(new URL('/test', request.url))
+    return NextResponse.redirect(new URL('/auth', request.url))
   }
 }
 
