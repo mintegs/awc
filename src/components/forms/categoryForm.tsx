@@ -26,7 +26,7 @@ export default function CreateCategoryForm({ data }: { data?: any }) {
           setSubmitting(true)
           try {
             const res = await fetcher().post('/admin/categories', {
-              values,
+              ...values,
             })
 
             // update list
