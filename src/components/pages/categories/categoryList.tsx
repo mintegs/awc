@@ -1,21 +1,28 @@
+import useCategories from '@/components/hooks/useCategories'
 import CategoryItem from './categoryItem'
 
-const categories = [
-  {
-    title: 'اموزشی',
-    count: 3,
-  },
-  {
-    title: 'تست نویسی',
-    count: 500,
-  },
-  {
-    title: 'جاوا اسکریپت',
-    count: 30,
-  },
-]
+// const categories = [
+//   {
+//     title: 'اموزشی',
+//     count: 3,
+//   },
+//   {
+//     title: 'تست نویسی',
+//     count: 500,
+//   },
+//   {
+//     title: 'جاوا اسکریپت',
+//     count: 30,
+//   },
+// ]
 
 export default function CategoryList() {
+  const { categories, loading } = useCategories()
+
+  if (loading) {
+    return <p>loading...</p>
+  }
+
   return (
     <>
       <div className='relative overflow-x-auto shadow-md rounded-md'>
@@ -43,7 +50,7 @@ export default function CategoryList() {
             </tr>
           </thead>
           <tbody>
-            {categories.map((item) => (
+            {categories.map((item: any) => (
               <CategoryItem
                 key={item.title}
                 item={item}
