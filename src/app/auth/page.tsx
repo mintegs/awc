@@ -1,17 +1,20 @@
 'use client'
 import SignInForm from '@/components/forms/signInForm'
+import useAuth from '@/components/hooks/useAuth'
 import SignInWithSocials from '@/components/pages/auth/signInWithSocials'
+import Loading from '@/components/shared/loading'
+import { redirect } from 'next/navigation'
 
 export default function Auth() {
-  // const { user, loading } = useAuth()
+  const { user, loading } = useAuth()
 
-  // if (loading) {
-  //   return <Loading />
-  // }
+  if (loading) {
+    return <Loading />
+  }
 
-  // if (user) {
-  //   redirect('/')
-  // }
+  if (user) {
+    redirect('/')
+  }
 
   return (
     <div className='w-full h-screen items-start bg-slate-800'>
