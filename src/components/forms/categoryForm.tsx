@@ -13,7 +13,7 @@ const categorySchema = yup.object().shape({
     .max(30, 'عنوان نباید از ۳۰ کاراکتر بیشتر باشد'),
 })
 
-export default function CategoryForm({ data }: { data?: any }) {
+export default function CreateCategoryForm({ data }: { data?: any }) {
   return (
     <div className='mt-5 text-right'>
       <Formik
@@ -35,11 +35,11 @@ export default function CategoryForm({ data }: { data?: any }) {
             customToaster('دسته باموفقیت ثبت شد', true)
             setSubmitting(false)
             resetForm()
-          } catch (error) {
+          } catch (error: any) {
             setSubmitting(false)
 
             // toaster
-            customToaster(JSON.stringify(error))
+            customToaster(error.response.data.message)
           }
           console.log('values', values)
         }}

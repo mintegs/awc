@@ -1,5 +1,5 @@
 'use client'
-import CategoryForm from '@/components/forms/categoryForm'
+import CreateCategoryForm from '@/components/forms/categoryForm'
 import Modal from '@/components/shared/modal'
 import { useState } from 'react'
 
@@ -19,7 +19,7 @@ export default function AddCategory() {
           close={setShowModal}
           title='ایجاد دسته جدید'
         >
-          <CategoryForm />
+          <CreateCategoryForm />
         </Modal>
       ) : null}
     </>
