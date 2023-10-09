@@ -2,6 +2,7 @@
 import fetcher from '@/lib/fetcher'
 import { Field, Form, Formik } from 'formik'
 import * as yup from 'yup'
+import customToaster from '../shared/notify'
 import SpinnerSvg from '../svg/spinnerSvg'
 
 const categorySchema = yup.object().shape({
@@ -31,11 +32,14 @@ export default function CategoryForm({ data }: { data?: any }) {
             // update list
 
             // toaster
+            customToaster('دسته باموفقیت ثبت شد', true)
             setSubmitting(false)
             resetForm()
           } catch (error) {
             setSubmitting(false)
+
             // toaster
+            customToaster(JSON.stringify(error))
           }
           console.log('values', values)
         }}
