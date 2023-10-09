@@ -25,12 +25,12 @@ export default function CreateCategoryForm({ data }: { data?: any }) {
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           setSubmitting(true)
           try {
-            const res = await fetcher().post('/admin/categories', {
+            const { data } = await fetcher().post('/admin/categories', {
               ...values,
             })
-
+            console.log('new category', data)
             // update list
-
+            // mutate('categories', )
             // toaster
             customToaster('دسته باموفقیت ثبت شد', 'bg-green-700', true)
             setSubmitting(false)
