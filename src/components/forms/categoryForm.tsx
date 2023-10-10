@@ -1,6 +1,7 @@
 'use client'
 import fetcher from '@/lib/fetcher'
 import { Field, Form, Formik } from 'formik'
+import { useSWRConfig } from 'swr'
 import * as yup from 'yup'
 import customToaster from '../shared/notify'
 import SpinnerSvg from '../svg/spinnerSvg'
@@ -13,13 +14,13 @@ const categorySchema = yup.object().shape({
     .max(30, 'عنوان نباید از ۳۰ کاراکتر بیشتر باشد'),
 })
 
-export default function CreateCategoryForm({ data }: { data?: any }) {
+export default function CreateCategoryForm() {
+  const { mutate } = useSWRConfig()
   return (
     <div className='mt-5 text-right'>
       <Formik
         initialValues={{
-          id: data?.id || undefined,
-          title: data?.title || '',
+          title: '',
         }}
         validationSchema={categorySchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
@@ -30,7 +31,8 @@ export default function CreateCategoryForm({ data }: { data?: any }) {
             })
             console.log('new category', data)
             // update list
-            // mutate('categories', )
+            mutate('categories')
+
             // toaster
             customToaster('دسته باموفقیت ثبت شد', 'bg-green-700', true)
             setSubmitting(false)

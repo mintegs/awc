@@ -3,7 +3,7 @@ import fetcher from '@/lib/fetcher'
 import useSWR from 'swr'
 
 export default function useCategories() {
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     'categories',
     () => {
       if (process.env.NEXT_PUBLIC_NODE_ENV !== 'production') {
@@ -20,5 +20,10 @@ export default function useCategories() {
     }
   )
 
-  return { categories: data?.data.categories, error, loading: !data && !error }
+  return {
+    categories: data?.data.categories,
+    error,
+    loading: !data && !error,
+    mutate,
+  }
 }
