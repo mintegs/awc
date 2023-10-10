@@ -28,7 +28,7 @@ export default function CategoryItem({ item }: { item: any }) {
               close={setShowEditModal}
               title='ویرایش دسته جدید'
             >
-              <CategoryForm data={item} />
+              <CategoryForm />
             </Modal>
           ) : null}
           <button
