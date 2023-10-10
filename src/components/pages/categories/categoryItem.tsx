@@ -1,4 +1,4 @@
-import CategoryForm from '@/components/forms/categoryForm'
+import CategoryForm from '@/components/forms/createCategoryForm'
 import Modal from '@/components/shared/modal'
 import { useState } from 'react'
 import { FiEdit2, FiTrash2 } from 'react-icons/fi'
@@ -28,7 +28,7 @@ export default function CategoryItem({ item }: { item: any }) {
               close={setShowEditModal}
               title='ویرایش دسته جدید'
             >
-              <CategoryForm />
+              {/* <CategoryForm /> */}
             </Modal>
           ) : null}
           <button

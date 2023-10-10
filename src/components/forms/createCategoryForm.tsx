@@ -1,6 +1,7 @@
 'use client'
 import fetcher from '@/lib/fetcher'
 import { Field, Form, Formik } from 'formik'
+import { Dispatch, SetStateAction } from 'react'
 import { useSWRConfig } from 'swr'
 import * as yup from 'yup'
 import customToaster from '../shared/notify'
@@ -14,7 +15,11 @@ const categorySchema = yup.object().shape({
     .max(30, 'عنوان نباید از ۳۰ کاراکتر بیشتر باشد'),
 })
 
-export default function CreateCategoryForm() {
+export default function CreateCategoryForm({
+  closeModal,
+}: {
+  closeModal: Dispatch<SetStateAction<boolean>>
+}) {
   const { mutate } = useSWRConfig()
   return (
     <div className='mt-5 text-right'>
@@ -26,10 +31,10 @@ export default function CreateCategoryForm() {
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           setSubmitting(true)
           try {
-            const { data } = await fetcher().post('/admin/categories', {
+            await fetcher().post('/admin/categories', {
               ...values,
             })
-            console.log('new category', data)
+
             // update list
             mutate('categories')
 
@@ -37,6 +42,7 @@ export default function CreateCategoryForm() {
             customToaster('دسته باموفقیت ثبت شد', 'bg-green-700', true)
             setSubmitting(false)
             resetForm()
+            closeModal(false)
           } catch (error: any) {
             setSubmitting(false)
 
