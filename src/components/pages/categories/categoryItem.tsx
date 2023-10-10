@@ -1,10 +1,27 @@
 import EditCategoryForm from '@/components/forms/editCategoryForm'
 import Modal from '@/components/shared/modal'
+import customToaster from '@/components/shared/notify'
+import fetcher from '@/lib/fetcher'
 import { useState } from 'react'
 import { FiEdit2, FiTrash2 } from 'react-icons/fi'
+import { mutate } from 'swr'
 
 export default function CategoryItem({ item }: { item: any }) {
   const [showEditModal, setShowEditModal] = useState(false)
+
+  async function deleteCategory(id: string) {
+    try {
+      await fetcher().delete(`/admin/categories/${id}`)
+      mutate('categories')
+
+      // toaster
+      customToaster('دسته باموفقیت حذف شد', 'bg-green-700', true)
+    } catch (error: any) {
+      // toaster
+      customToaster(error.response.data.message, 'bg-red-700')
+    }
+  }
+
   return (
     <tr className='border-b bg-slate-800 border-slate-700 hover:bg-slate-700 hover:bg-opacity-60'>
       <th
@@ -35,7 +52,7 @@ export default function CategoryItem({ item }: { item: any }) {
             </Modal>
           ) : null}
           <button
-            onClick={() => console.log(item.title)}
+            onClick={() => deleteCategory(item._id)}
             className='rounded-full hover:bg-red-200 text-red-400 hover:text-red-600 p-1'
           >
             <FiTrash2 size={20} />
