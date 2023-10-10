@@ -49,7 +49,6 @@ export default function CreateCategoryForm({
             // toaster
             customToaster(error.response.data.message, 'bg-red-700')
           }
-          console.log('values', values)
         }}
       >
         {({ dirty, isValid, isSubmitting, errors }) => {

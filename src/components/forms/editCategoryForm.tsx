@@ -20,7 +20,7 @@ export default function EditCategoryForm({
   closeModal,
 }: {
   data: {
-    id: string
+    _id: string
     title: string
   }
   closeModal: Dispatch<SetStateAction<boolean>>
@@ -30,7 +30,7 @@ export default function EditCategoryForm({
     <div className='mt-5 text-right'>
       <Formik
         initialValues={{
-          id: data.id,
+          id: data._id,
           title: data.title,
         }}
         validationSchema={categorySchema}
@@ -55,7 +55,6 @@ export default function EditCategoryForm({
             // toaster
             customToaster(error.response.data.message, 'bg-red-700')
           }
-          console.log('values', values)
         }}
       >
         {({ dirty, isValid, isSubmitting, errors }) => {
