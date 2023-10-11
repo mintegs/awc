@@ -38,14 +38,10 @@ export function useEditCategoryMutation() {
     },
     {
       onSuccess(data, variables: any) {
-        console.log('variables', variables)
-        const previousCategories = queryClient.getQueryData(['categories'])
-
-        queryClient.setQueryData(['categories'], (old: any) =>
-          old.filter((item: any) => item._id !== variables)
+        queryClient.setQueryData(
+          ['categories', { _id: variables.id }],
+          data.data
         )
-
-        return { previousCategories }
       },
     }
   )
@@ -60,10 +56,14 @@ export function useRemoveCategoryMutation() {
     },
     {
       onSuccess(data, variables: any) {
-        queryClient.setQueryData(
-          ['categories', { _id: variables.id }],
-          data.data
+        console.log('variables', variables)
+        const previousCategories = queryClient.getQueryData(['categories'])
+
+        queryClient.setQueryData(['categories'], (old: any) =>
+          old.filter((item: any) => item._id !== variables)
         )
+
+        return { previousCategories }
       },
     }
   )
