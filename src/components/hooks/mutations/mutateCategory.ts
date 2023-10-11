@@ -22,7 +22,10 @@ export function useCreateCategoryMutation() {
         console.log('context', context)
 
         const previousCategories = queryClient.getQueryData(['categories'])
-        queryClient.setQueryData(['categories'], (old: any) => [...old])
+        queryClient.setQueryData(['categories'], (old: any) => [
+          ...old,
+          data.data,
+        ])
 
         return { previousCategories }
       },
