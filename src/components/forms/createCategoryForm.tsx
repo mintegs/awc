@@ -67,9 +67,8 @@ export default function CreateCategoryForm({
                     {isLoading ? (
                       <SpinnerSvg classNames={`h-5 w-5 text-white`} />
                     ) : (
-                      <></>
+                      'ثبت'
                     )}
-                    ثبت
                   </button>
                 </div>
                 <div className='text-red-500 text-sm'>

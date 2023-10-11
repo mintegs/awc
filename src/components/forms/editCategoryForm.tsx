@@ -1,9 +1,8 @@
 'use client'
-import fetcher from '@/lib/fetcher'
 import { Field, Form, Formik } from 'formik'
 import { Dispatch, SetStateAction } from 'react'
-import { useSWRConfig } from 'swr'
 import * as yup from 'yup'
+import { useEditCategoryMutation } from '../hooks/mutations/mutateCategory'
 import customToaster from '../shared/notify'
 import SpinnerSvg from '../svg/spinnerSvg'
 
@@ -25,7 +24,7 @@ export default function EditCategoryForm({
   }
   closeModal: Dispatch<SetStateAction<boolean>>
 }) {
-  const { mutate } = useSWRConfig()
+  const { mutate } = useEditCategoryMutation()
   return (
     <div className='mt-5 text-right'>
       <Formik
@@ -34,27 +33,21 @@ export default function EditCategoryForm({
           title: data.title,
         }}
         validationSchema={categorySchema}
-        onSubmit={async (values, { setSubmitting, resetForm }) => {
-          setSubmitting(true)
-          try {
-            await fetcher().put(`/admin/categories/${values.id}`, {
-              ...values,
-            })
+        onSubmit={async (values, { setSubmitting }) => {
+          mutate(values, {
+            onSuccess: () => {
+              setSubmitting(false)
+              customToaster('دسته باموفقیت ویرایش شد', 'bg-green-700', true)
+              closeModal(false)
+            },
+            onError: (error: any) => {
+              // Set submitting value
+              setSubmitting(false)
 
-            // update list
-            mutate('categories')
-
-            // toaster
-            customToaster('دسته باموفقیت ویرایش شد', 'bg-green-700', true)
-            setSubmitting(false)
-            resetForm()
-            closeModal(false)
-          } catch (error: any) {
-            setSubmitting(false)
-
-            // toaster
-            customToaster(error.response.data.message, 'bg-red-700')
-          }
+              // Set notify
+              customToaster(error.response.data.message, 'bg-red-700')
+            },
+          })
         }}
       >
         {({ dirty, isValid, isSubmitting, errors }) => {
