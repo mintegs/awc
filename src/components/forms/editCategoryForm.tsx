@@ -24,7 +24,8 @@ export default function EditCategoryForm({
   }
   closeModal: Dispatch<SetStateAction<boolean>>
 }) {
-  const { mutate } = useEditCategoryMutation()
+  const { mutate, isLoading } = useEditCategoryMutation()
+
   return (
     <div className='mt-5 text-right'>
       <Formik
@@ -69,7 +70,7 @@ export default function EditCategoryForm({
                     } rounded-md border border-transparent bg-blue-700 mr-2 px-4 py-3 text-base font-medium text-white hover:bg-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2`}
                     disabled={!(dirty && isValid)}
                   >
-                    {isSubmitting ? (
+                    {isLoading ? (
                       <SpinnerSvg classNames={`h-5 w-5 text-white`} />
                     ) : (
                       'ثبت'
