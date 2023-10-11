@@ -1,12 +1,13 @@
 'use client'
 import useCategories from '@/components/hooks/queries/categories'
+import CategoryListSkeleton from '../skeletons/categoryListSkeleton'
 import CategoryItem from './categoryItem'
 
 export default function CategoryList() {
   const { categories, loading } = useCategories()
 
   if (loading) {
-    return <p>loading...</p>
+    return <CategoryListSkeleton />
   }
 
   return (
