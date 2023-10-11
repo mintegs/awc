@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
 export default function useCategories() {
-  const { data: categories, error } = useQuery<any, AxiosError>({
+  const { data, error } = useQuery<any, AxiosError>({
     queryKey: ['categories'],
     queryFn: async () => {
       const { data } = await fetcher().get('/admin/categories')
@@ -15,8 +15,8 @@ export default function useCategories() {
   })
 
   return {
-    categories: categories,
-    loading: !categories && !error,
+    categories: data.categories,
+    loading: !data && !error,
     error,
   }
 }
