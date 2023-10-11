@@ -19,8 +19,6 @@ import CategoryItem from './categoryItem'
 export default function CategoryList() {
   const { categories, loading } = useCategories()
 
-  console.log('categories', categories)
-
   if (loading) {
     return <p>loading...</p>
   }
