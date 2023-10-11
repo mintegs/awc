@@ -39,9 +39,12 @@ export function useEditCategoryMutation() {
     {
       onSuccess(data, variables, context) {
         const previousCategories = queryClient.getQueryData(['categories'])
-        console.log('data', data)
         queryClient.setQueryData(['categories'], (old: any) => {
-          const data = old.filter((item: any) => {})
+          const data = old.filter((item: any) => {
+            if (item._id === data._id) {
+              item = data
+            }
+          })
         })
 
         return { previousCategories }
