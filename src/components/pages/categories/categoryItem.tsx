@@ -15,10 +15,11 @@ export default function CategoryItem({ item }: { item: any }) {
         'categories',
         async (categories: any) => {
           await fetcher().delete(`/admin/categories/${id}`)
-          const filterCategories = categories.data.categories.filter(
-            (category: any) => category._id !== id
-          )
-          return [...filterCategories]
+          console.log('categories in mutate', categories)
+          // const filterCategories = categories.data.categories.filter(
+          //   (category: any) => category._id !== id
+          // )
+          return [...categories]
         },
         { revalidate: false }
       )
