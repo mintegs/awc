@@ -15,7 +15,7 @@ export default function CategoryItem({ item }: { item: any }) {
         'categories',
         async (categories: any) => {
           await fetcher().delete(`/admin/categories/${id}`)
-          console.log('categories in mutate', categories)
+          console.log('categories in mutate', categories.data.categories)
           // const filterCategories = categories.data.categories.filter(
           //   (category: any) => category._id !== id
           // )
