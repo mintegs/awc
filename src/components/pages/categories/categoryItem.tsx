@@ -12,7 +12,17 @@ export default function CategoryItem({ item }: { item: any }) {
   async function deleteCategory(id: string) {
     try {
       await fetcher().delete(`/admin/categories/${id}`)
-      mutate('categories')
+      mutate(
+        'categories',
+        async (categories: any) => {
+          await fetcher().delete(`/admin/categories/${id}`)
+          const filterCategories = categories.filter(
+            (category: any) => category._id !== id
+          )
+          return [...filterCategories]
+        },
+        { revalidate: false }
+      )
 
       // toaster
       customToaster('دسته باموفقیت حذف شد', 'bg-green-700', true)
