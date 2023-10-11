@@ -1,20 +1,5 @@
-import useCategories from '@/components/hooks/useCategories'
+import useCategories from '@/components/hooks/queries/categories'
 import CategoryItem from './categoryItem'
-
-// const categories = [
-//   {
-//     title: 'اموزشی',
-//     count: 3,
-//   },
-//   {
-//     title: 'تست نویسی',
-//     count: 500,
-//   },
-//   {
-//     title: 'جاوا اسکریپت',
-//     count: 30,
-//   },
-// ]
 
 export default function CategoryList() {
   const { categories, loading } = useCategories()

@@ -1,9 +1,8 @@
 'use client'
-import fetcher from '@/lib/fetcher'
 import { Field, Form, Formik } from 'formik'
 import { Dispatch, SetStateAction } from 'react'
-import { useSWRConfig } from 'swr'
 import * as yup from 'yup'
+import { useCreateCategoryMutation } from '../hooks/mutations/mutateCategory'
 import customToaster from '../shared/notify'
 import SpinnerSvg from '../svg/spinnerSvg'
 
@@ -20,7 +19,8 @@ export default function CreateCategoryForm({
 }: {
   closeModal: Dispatch<SetStateAction<boolean>>
 }) {
-  const { mutate } = useSWRConfig()
+  // const { mutate } = useSWRConfig()
+  const { mutate } = useCreateCategoryMutation()
   return (
     <div className='mt-5 text-right'>
       <Formik
@@ -30,25 +30,21 @@ export default function CreateCategoryForm({
         validationSchema={categorySchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           setSubmitting(true)
-          try {
-            await fetcher().post('/admin/categories', {
-              ...values,
-            })
+          mutate(values, {
+            onSuccess: () => {
+              customToaster('دسته باموفقیت ثبت شد', 'bg-green-700', true)
+              setSubmitting(false)
+              resetForm()
+              closeModal(false)
+            },
+            onError: (error: any) => {
+              // Set submitting value
+              setSubmitting(false)
 
-            // update list
-            mutate('categories')
-
-            // toaster
-            customToaster('دسته باموفقیت ثبت شد', 'bg-green-700', true)
-            setSubmitting(false)
-            resetForm()
-            closeModal(false)
-          } catch (error: any) {
-            setSubmitting(false)
-
-            // toaster
-            customToaster(error.response.data.message, 'bg-red-700')
-          }
+              // Set notify
+              customToaster(error.response.data.message, 'bg-red-700')
+            },
+          })
         }}
       >
         {({ dirty, isValid, isSubmitting, errors }) => {
