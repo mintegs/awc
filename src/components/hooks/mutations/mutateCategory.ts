@@ -40,15 +40,9 @@ export function useEditCategoryMutation() {
       onSuccess(data, variables: any) {
         console.log('data', data.data)
         console.log('variables', variables)
-
         queryClient.setQueryData(
-          ['categories', { _id: variables.id }],
-          (oldData: any) =>
-            oldData
-              ? {
-                  ...data.data,
-                }
-              : oldData
+          ['categories', { id: variables.id }],
+          data.data
         )
       },
     }
