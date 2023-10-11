@@ -1,29 +1,23 @@
 import EditCategoryForm from '@/components/forms/editCategoryForm'
+import useCategories from '@/components/hooks/useCategories'
 import Modal from '@/components/shared/modal'
 import customToaster from '@/components/shared/notify'
 import fetcher from '@/lib/fetcher'
 import { useState } from 'react'
 import { FiEdit2, FiTrash2 } from 'react-icons/fi'
-import { mutate } from 'swr'
 
 export default function CategoryItem({ item }: { item: any }) {
   const [showEditModal, setShowEditModal] = useState(false)
-
+  const { categories, mutate } = useCategories()
   async function deleteCategory(id: string) {
     try {
-      mutate(
-        'categories',
-        async (categories: any) => {
-          await fetcher().delete(`/admin/categories/${id}`)
-          const data = categories.data.categories
-          console.log('categories in mutate', data)
-          const filterCategories = data.filter(
-            (category: any) => category._id !== id
-          )
-          return [...filterCategories]
-        },
-        { revalidate: false }
+      await fetcher().delete(`/admin/categories/${id}`)
+      const filterCategories = categories.filter(
+        (category: any) => category._id !== id
       )
+      mutate(filterCategories, {
+        revalidate: false,
+      })
 
       // toaster
       customToaster('دسته باموفقیت حذف شد', 'bg-green-700', true)
