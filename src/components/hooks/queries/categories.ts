@@ -15,7 +15,7 @@ export default function useCategories() {
   })
 
   return {
-    categories: data.categories,
+    categories: data,
     loading: !data && !error,
     error,
   }
