@@ -38,14 +38,15 @@ export function useEditCategoryMutation() {
     },
     {
       onSuccess(data: any) {
+        console.log('data', data)
         const previousCategories = queryClient.getQueryData(['categories'])
-        queryClient.setQueryData(['categories'], (old: any) =>
-          old.map((item: any) => {
-            if (item._id === data.data._id) {
-              item = data.data
-            }
-          })
-        )
+        // queryClient.setQueryData(['categories'], (old: any) =>
+        //   old.map((item: any) => {
+        //     if (item._id === data.data._id) {
+        //       item = data.data
+        //     }
+        //   })
+        // )
 
         return { previousCategories }
       },
