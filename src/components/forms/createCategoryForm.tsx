@@ -29,7 +29,6 @@ export default function CreateCategoryForm({
         }}
         validationSchema={categorySchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
-          setSubmitting(true)
           mutate(values, {
             onSuccess: () => {
               customToaster('دسته باموفقیت ثبت شد', 'bg-green-700', true)
