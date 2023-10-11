@@ -34,7 +34,7 @@ export function useEditCategoryMutation() {
 
   return useMutation(
     (payload: payload) => {
-      return fetcher().put(`/admin/categories${payload.id}`, payload)
+      return fetcher().put(`/admin/categories/${payload.id}`, payload)
     },
     {
       onSuccess(data, variables, context) {
