@@ -2,12 +2,13 @@ import EditCategoryForm from '@/components/forms/editCategoryForm'
 import { useRemoveCategoryMutation } from '@/components/hooks/mutations/mutateCategory'
 import Modal from '@/components/shared/modal'
 import customToaster from '@/components/shared/notify'
+import SpinnerSvg from '@/components/svg/spinnerSvg'
 import { useState } from 'react'
 import { FiEdit2, FiTrash2 } from 'react-icons/fi'
 
 export default function CategoryItem({ item }: { item: any }) {
   const [showEditModal, setShowEditModal] = useState(false)
-  const { mutate } = useRemoveCategoryMutation()
+  const { mutate, isLoading } = useRemoveCategoryMutation()
 
   function deleteCategory(id: string) {
     mutate(id, {
@@ -52,8 +53,13 @@ export default function CategoryItem({ item }: { item: any }) {
           <button
             onClick={() => deleteCategory(item._id)}
             className='rounded-full hover:bg-red-200 text-red-400 hover:text-red-600 p-1'
+            disabled={isLoading}
           >
-            <FiTrash2 size={20} />
+            {isLoading ? (
+              <SpinnerSvg classNames={`h-5 w-5 text-white`} />
+            ) : (
+              <FiTrash2 size={20} />
+            )}
           </button>
         </div>
       </td>
