@@ -38,6 +38,9 @@ export function useEditCategoryMutation() {
     },
     {
       onSuccess(data, variables: any) {
+        console.log('data', data.data)
+        console.log('variables', variables)
+
         queryClient.setQueryData(
           ['categories', { _id: variables.id }],
           data.data
@@ -56,7 +59,6 @@ export function useRemoveCategoryMutation() {
     },
     {
       onSuccess(data, variables: any) {
-        console.log('variables', variables)
         const previousCategories = queryClient.getQueryData(['categories'])
 
         queryClient.setQueryData(['categories'], (old: any) =>
