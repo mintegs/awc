@@ -37,9 +37,13 @@ export function useEditCategoryMutation() {
       return fetcher().put(`/admin/categories/${payload.id}`, payload)
     },
     {
-      onSuccess(data: any) {
-        console.log('data', data)
-        const previousCategories = queryClient.getQueryData(['categories'])
+      onSuccess(data: any, variables) {
+        console.log('variables', variables)
+        queryClient.setQueryData(
+          ['categories', { _id: variables.id }],
+          data.data
+        )
+        // const previousCategories = queryClient.getQueryData(['categories'])
         // queryClient.setQueryData(['categories'], (old: any) =>
         //   old.map((item: any) => {
         //     if (item._id === data.data._id) {
