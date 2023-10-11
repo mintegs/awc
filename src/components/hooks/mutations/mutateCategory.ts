@@ -37,8 +37,12 @@ export function useEditCategoryMutation() {
       return fetcher().put(`/admin/categories/${payload.id}`, payload)
     },
     {
-      onSuccess() {
-        queryClient.invalidateQueries({ queryKey: ['categories'] })
+      onSuccess(data: any, variables) {
+        queryClient.setQueryData(
+          ['categories', { _id: variables.id }],
+          data.data
+        )
+        // queryClient.invalidateQueries({ queryKey: ['categories'] })
       },
     }
   )
