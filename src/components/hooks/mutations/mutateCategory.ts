@@ -52,7 +52,7 @@ export function useEditCategoryMutation() {
         //   })
         // )
 
-        return { previousCategories }
+        // return { previousCategories }
       },
     }
   )
