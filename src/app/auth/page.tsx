@@ -1,6 +1,6 @@
 'use client'
 import SignInForm from '@/components/forms/signInForm'
-import useAuth from '@/components/hooks/useAuth'
+import useAuth from '@/components/hooks/queries/auth'
 import SignInWithSocials from '@/components/pages/auth/signInWithSocials'
 import Loading from '@/components/shared/loading'
 import { redirect } from 'next/navigation'

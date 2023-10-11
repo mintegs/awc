@@ -1,5 +1,5 @@
 'use client'
-import useAuth from '@/components/hooks/useAuth'
+import useAuth from '@/components/hooks/queries/auth'
 import { Menu, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import { Fragment } from 'react'

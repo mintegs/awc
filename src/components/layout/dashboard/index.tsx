@@ -1,5 +1,5 @@
 'use client'
-import useAuth from '@/components/hooks/useAuth'
+import useAuth from '@/components/hooks/queries/auth'
 import Loading from '@/components/shared/loading'
 import { redirect, usePathname } from 'next/navigation'
 import { ReactNode, useEffect, useState } from 'react'
