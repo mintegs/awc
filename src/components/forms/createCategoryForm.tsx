@@ -31,9 +31,8 @@ export default function CreateCategoryForm({
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           mutate(values, {
             onSuccess: () => {
-              customToaster('دسته باموفقیت ثبت شد', 'bg-green-700', true)
               setSubmitting(false)
-              resetForm()
+              customToaster('دسته باموفقیت ثبت شد', 'bg-green-700', true)
               closeModal(false)
             },
             onError: (error: any) => {
@@ -68,8 +67,9 @@ export default function CreateCategoryForm({
                     {isSubmitting ? (
                       <SpinnerSvg classNames={`h-5 w-5 text-white`} />
                     ) : (
-                      'ثبت'
+                      <></>
                     )}
+                    ثبت
                   </button>
                 </div>
                 <div className='text-red-500 text-sm'>
