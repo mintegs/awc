@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'ثبت مقاله جدید',
+  title: 'ایجاد مقاله جدید',
 }
 
 export default function CreateArticleLayout({
