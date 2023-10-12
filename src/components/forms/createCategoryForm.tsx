@@ -19,7 +19,6 @@ export default function CreateCategoryForm({
 }: {
   closeModal: Dispatch<SetStateAction<boolean>>
 }) {
-  // const { mutate } = useSWRConfig()
   const { mutate, isLoading } = useCreateCategoryMutation()
   return (
     <div className='mt-5 text-right'>
