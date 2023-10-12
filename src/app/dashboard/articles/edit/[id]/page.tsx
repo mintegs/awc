@@ -1,3 +1,4 @@
+'use client'
 import DashboardLayout from '@/app/dashboard/layout'
 
 export default function EditArticle({ params }: { params: { id: string } }) {
