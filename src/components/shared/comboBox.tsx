@@ -55,7 +55,7 @@ export default function ComboBox({
                 </label>
                 <Combobox.Input
                   id={name}
-                  className='w-full rounded-md border border-slate-700/50 py-3 px-5 bg-slate-700/50  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition'
+                  className='w-full rounded-md border border-slate-600 py-3 px-5 bg-slate-600  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition'
                   displayValue={(value: any) =>
                     value === ''
                       ? ''
