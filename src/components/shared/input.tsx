@@ -9,6 +9,7 @@ interface Props {
   isLtr?: boolean
   props?: object
   placeholder?: string
+  classNames?: string
 }
 
 export default function Input({
@@ -18,6 +19,7 @@ export default function Input({
   isLtr = false,
   label,
   placeholder,
+  classNames = 'form-input',
 }: Props) {
   return (
     <>
@@ -36,7 +38,7 @@ export default function Input({
         name={name}
         type={type}
         placeholder={placeholder}
-        className={`form-input ${isLtr ? 'ltr' : ''}`}
+        className={`${classNames} ${isLtr ? 'ltr' : ''}`}
       />
       <ErrorMessage name={name}>
         {(msg: any) => (

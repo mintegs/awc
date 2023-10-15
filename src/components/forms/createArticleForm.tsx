@@ -36,6 +36,7 @@ export default function ArticleForm() {
                     type='text'
                     label='عنوان'
                     placeholder='عنوان مقاله را وارد کنید'
+                    classNames='w-full rounded-md border border-slate-700 py-3 px-5 bg-slate-700  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition'
                   />
                 </div>
                 <div className='mb-6'>
