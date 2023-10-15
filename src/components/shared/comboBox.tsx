@@ -39,7 +39,7 @@ export default function ComboBox({
             <>
               <Combobox
                 as='div'
-                className='bg-gray-500/50 p-2 rounded-md'
+                className='bg-slate-700/50 p-2 rounded-md'
                 value={field.value}
                 onChange={(value) =>
                   form.setFieldValue(name, Object.values(value)[0] as string)
@@ -55,7 +55,7 @@ export default function ComboBox({
                 </label>
                 <Combobox.Input
                   id={name}
-                  className='form-input'
+                  className='w-full rounded-md border border-slate-700 py-3 px-5 bg-slate-700  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition'
                   displayValue={(value: any) =>
                     value === ''
                       ? ''
@@ -84,7 +84,7 @@ export default function ComboBox({
                           <div
                             className={`${
                               active
-                                ? 'bg-gray-500/75 text-gray-100'
+                                ? 'bg-slate-500/75 text-gray-100'
                                 : 'text-gray-400'
                             } p-2 cursor-pointer rounded-md`}
                           >
