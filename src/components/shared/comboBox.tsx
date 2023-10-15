@@ -1,9 +1,9 @@
 'use client'
 import { Combobox } from '@headlessui/react'
 import { ErrorMessage, Field, FieldProps } from 'formik'
-import { FC, useState } from 'react'
+import { useState } from 'react'
 
-export interface ComboBoxProps {
+interface ComboBoxProps {
   name: string
   label?: string
   data: any[]
@@ -11,14 +11,15 @@ export interface ComboBoxProps {
   filterField?: string
 }
 
-const ComboBox: FC<ComboBoxProps> = ({
+export default function ComboBox({
   name,
   label,
   placeholder,
   filterField,
   data,
-}) => {
+}: ComboBoxProps) {
   const [query, setQuery] = useState('')
+
   return (
     <>
       <Field
@@ -107,5 +108,3 @@ const ComboBox: FC<ComboBoxProps> = ({
     </>
   )
 }
-
-export default ComboBox
