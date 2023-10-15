@@ -3,7 +3,7 @@ import { Combobox } from '@headlessui/react'
 import { ErrorMessage, Field, FieldProps } from 'formik'
 import { useState } from 'react'
 
-interface ComboBoxProps {
+interface Props {
   name: string
   label?: string
   data: any[]
@@ -17,7 +17,7 @@ export default function ComboBox({
   placeholder,
   filterField,
   data,
-}: ComboBoxProps) {
+}: Props) {
   const [query, setQuery] = useState('')
 
   return (

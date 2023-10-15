@@ -19,12 +19,12 @@ type Options = {
  *
  * @returns The parsed plain text
  */
-const removeMarkdown = (
+export default function removeMarkdown(
   markdown: string,
   options: Options = {
     listUnicodeChar: '',
   }
-) => {
+) {
   options = options || {}
   options.listUnicodeChar = options.hasOwnProperty('listUnicodeChar')
     ? options.listUnicodeChar
@@ -107,5 +107,3 @@ const removeMarkdown = (
   }
   return output
 }
-
-export default removeMarkdown

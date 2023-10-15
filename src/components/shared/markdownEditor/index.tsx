@@ -2,7 +2,7 @@
 
 import { Menu, Transition } from '@headlessui/react'
 import { ErrorMessage, Field, FieldProps } from 'formik'
-import { FC, Fragment, useState } from 'react'
+import { Fragment, useState } from 'react'
 import {
   FaBold,
   FaCode,
@@ -28,9 +28,8 @@ import remarkGfm from 'remark-gfm'
 import BlockQuote from './blockQuote'
 import codeBlock from './codeBlock'
 import removeMarkdown from './convertToText'
-// import customLink from './customLink'
 
-export interface Props {
+interface Props {
   name: string
   isLtr?: boolean
   placeholder?: string
@@ -105,7 +104,7 @@ const editorButtons = [
   },
 ]
 
-const MarkdownEditor: FC<Props> = ({ name, placeholder, isLtr }) => {
+export default function MarkdownEditor({ name, placeholder, isLtr }: Props) {
   const [preview, setPreview] = useState(false)
   const markdownComponents = { code: codeBlock, blockquote: BlockQuote }
   return (
@@ -384,58 +383,3 @@ const MarkdownEditor: FC<Props> = ({ name, placeholder, isLtr }) => {
     </>
   )
 }
-export default MarkdownEditor
-// function Editor() {
-//   const [preview, setPreview] = useState(false)
-//   const [markdown, setMarkdown] = useState('')
-
-//   //   const markdownComponents = {
-//   //     a: customLink,
-//   //     code: codeBlock,
-//   //   }
-
-//   return (
-//     <>
-
-//         <textarea
-//           id='editor'
-//           value={markdown}
-//           onChange={(event) => form.setFieldValue(
-//   name,event.target.value)}
-//           rows={9}
-//           name='text'
-//           placeholder='متن خود را وارد کنید'
-//           className='form-input mt-2 resize-y'
-//         />
-//       </div>
-//       <div
-//         className={`mb-6 bg-gray-100 p-5 rounded-md min-h-max overflow-y-auto markdown ${
-//           preview ? '' : 'hidden'
-//         }`}
-//       >
-//         {/* <ReactMarkdown
-//           components={markdownComponents}
-//           remarkPlugins={[remarkGfm]}
-//         >
-//           {markdown}
-//         </ReactMarkdown> */}
-//       </div>
-//       <div className='mb-3'>
-//         <label
-//           htmlFor='preview-toggle'
-//           className='relative inline-flex items-center mb-4 cursor-pointer'
-//         >
-//           <span className='ml-3'>پیش نمایش</span>
-//           <input
-//             type='checkbox'
-//             checked={preview}
-//             onChange={() => setPreview(!preview)}
-//             id='preview-toggle'
-//             className='sr-only peer'
-//           />
-//           <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-//         </label>
-//       </div>
-//     </>
-//   )
-// }

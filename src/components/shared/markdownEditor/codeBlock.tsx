@@ -3,7 +3,13 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { materialDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
-const codeBlock = ({ node, inline, className, children, ...props }: any) => {
+export default function CodeBlock({
+  node,
+  inline,
+  className,
+  children,
+  ...props
+}: any) {
   const match = /language-(\w+)/.exec(className || '')
   return !inline && match ? (
     <SyntaxHighlighter
@@ -26,5 +32,3 @@ const codeBlock = ({ node, inline, className, children, ...props }: any) => {
     </code>
   )
 }
-
-export default codeBlock
