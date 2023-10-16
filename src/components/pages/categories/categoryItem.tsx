@@ -22,7 +22,11 @@ export default function CategoryItem({ item }: { item: any }) {
   }
 
   return (
-    <tr className='border-b bg-slate-800 border-slate-700 hover:bg-slate-700 hover:bg-opacity-60'>
+    <tr
+      className={`${
+        isLoading ? 'animate-pulse' : ''
+      }  border-b bg-slate-800 border-slate-700 hover:bg-slate-700 hover:bg-opacity-60`}
+    >
       <th
         scope='row'
         className='px-6 py-2 font-medium whitespace-nowrap'

@@ -54,7 +54,7 @@ export default function ArticleForm() {
                 <div className='flex justify-center items-center'>
                   <button
                     type='submit'
-                    className='h-10 w-[50%] p-5 bg-green-700 flex justify-center items-center font-medium text-base rounded-xl text-white border-2 border-green-700 hover:bg-white hover:text-green-700 transition duration-200 hover:shadow-lg'
+                    className='h-10 w-full bg-blue-600 flex justify-center items-center font-medium text-base rounded-md group text-white border-2 border-blue-600 hover:bg-slate-700 hover:text-blue-400 hover:border-blue-500 transition duration-200 shadow-lg'
                   >
                     ثبت
                   </button>
