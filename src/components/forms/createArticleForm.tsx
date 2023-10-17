@@ -51,14 +51,13 @@ export default function ArticleForm() {
                 <div className='mb-6'>
                   <MarkdownEditor name='content' />
                 </div>
-                <div className='flex justify-center items-center'>
-                  <button
-                    type='submit'
-                    className='h-10 w-full bg-blue-600 flex justify-center items-center font-medium text-base rounded-md group text-white border-2 border-blue-600 hover:bg-slate-700 hover:text-blue-400 hover:border-blue-500 transition duration-200 shadow-lg'
-                  >
-                    ثبت
-                  </button>
-                </div>
+
+                <button
+                  type='submit'
+                  className='h-10 w-32 bg-blue-600 flex justify-center items-center font-medium text-base rounded-md group text-white border-2 border-blue-600 hover:bg-slate-700 hover:text-blue-400 hover:border-blue-500 transition duration-200 shadow-lg'
+                >
+                  ثبت
+                </button>
               </div>
             </Form>
           </>

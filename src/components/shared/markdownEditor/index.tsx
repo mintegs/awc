@@ -250,7 +250,7 @@ export default function MarkdownEditor({ name, placeholder, isLtr }: Props) {
           }
 
           return (
-            <div className='bg-gray-500/50 p-2 rounded-md'>
+            <div className='bg-slate-700 p-2 rounded-md'>
               {!preview ? (
                 <div className='flex flex-row pl-2 pb-2 max-w-fit'>
                   {editorButtons.map((item) =>
@@ -317,9 +317,9 @@ export default function MarkdownEditor({ name, placeholder, isLtr }: Props) {
                 id={name}
                 rows={10}
                 placeholder={placeholder}
-                className={`form-input ${isLtr ? 'ltr' : ''} ${
-                  preview ? 'hidden' : ''
-                }`}
+                className={`w-full rounded-md border border-slate-600 py-3 px-5 bg-slate-600  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition ${
+                  isLtr ? 'ltr' : ''
+                } ${preview ? 'hidden' : ''}`}
                 {...field}
               />
               <div
