@@ -260,7 +260,7 @@ export default function MarkdownEditor({ name, placeholder, isLtr }: Props) {
                         key={item.name}
                         onClick={() => actionButtons(item.name)}
                         type='button'
-                        className='text-gray-700 bg-gray-500 flex justify-center items-center hover:text-gray-300 rounded-md max-w-[2rem] p-1 ml-2 last:ml-0'
+                        className='text-gray-300 bg-blue-500 flex justify-center items-center hover:text-gray-100 rounded-md max-w-[2rem] p-1 ml-2 last:ml-0'
                       >
                         {item.icon}
                       </button>
@@ -271,7 +271,7 @@ export default function MarkdownEditor({ name, placeholder, isLtr }: Props) {
                         className='relative inline-block text-left ml-2 last:ml-0'
                       >
                         <div>
-                          <Menu.Button className='text-gray-700 bg-slate-700 flex justify-center items-center hover:text-gray-300 rounded-md max-w-[2rem] p-1'>
+                          <Menu.Button className='text-gray-300 bg-blue-500 flex justify-center items-center hover:text-gray-100 rounded-md max-w-[2rem] p-1'>
                             <FaHeading size={15} />
                           </Menu.Button>
                         </div>
