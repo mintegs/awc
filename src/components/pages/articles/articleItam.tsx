@@ -1,6 +1,19 @@
 import { FiEdit2, FiTrash2 } from 'react-icons/fi'
 
 export default function ArticleItem({ item }: { item: any }) {
+  function getStatus(status: string) {
+    switch (status) {
+      case 'INACTIVE':
+        return 'غیرفعال'
+
+      case 'ACTIVE':
+        return 'فعال'
+
+      default:
+        return 'نامعلوم'
+    }
+  }
+
   return (
     <tr
       className={`border-b bg-slate-800 border-slate-700 hover:bg-slate-700 hover:bg-opacity-60`}
@@ -11,19 +24,15 @@ export default function ArticleItem({ item }: { item: any }) {
       >
         {item.title}
       </th>
-      <th
-        scope='row'
-        className='px-6 py-2 font-medium whitespace-nowrap'
-      >
+      <th className='px-6 py-2 font-medium whitespace-nowrap'>
         {item.user.username}
       </th>
-      <th
-        scope='row'
-        className='px-6 py-2 font-medium whitespace-nowrap'
-      >
-        {item.status}
+      <th className='px-6 py-2 font-medium whitespace-nowrap'>
+        <span className='bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300'>
+          {getStatus(item.status)}
+        </span>
       </th>
-      <td className='px-6 py-2 hidden md:block'>
+      <td className='px-6 py-2'>
         {item.createdAt === item.updatedAt
           ? new Intl.DateTimeFormat('fa-IR').format(new Date(item.createdAt))
           : `${item.createdAt} + '/' + ${item.updatedAt}`}
