@@ -16,7 +16,7 @@ export function useCreateArticleMutation() {
 
   return useMutation(
     (payload: payload) => {
-      return fetcher().post('/admin/articles', payload)
+      return fetcher().post('/user/articles', payload)
     },
     {
       onSuccess(data, variables, context) {
