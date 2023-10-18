@@ -3,6 +3,7 @@ import { Form, Formik } from 'formik'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import * as yup from 'yup'
+import { useArticle } from '../hooks/queries/articles'
 import useCategories from '../hooks/queries/categories'
 import ComboBoxSkeleton from '../pages/skeletons/comboBoxSkeleton'
 import ComboBox from '../shared/comboBox'
@@ -29,11 +30,15 @@ const articleSchema = yup.object().shape({
 export default function EditArticleForm() {
   const { categories, loading } = useCategories()
   const params = useParams()
-  // const { article, loading: articleLoading } = useArticle(params.id as string)
+  const { article, loading: articleLoading } = useArticle(params.id as string)
 
   const { push } = useRouter()
 
-  console.log('params', params)
+  if (articleLoading) {
+    return <p>loading article...</p>
+  }
+
+  console.log('article', article)
 
   return (
     <>
