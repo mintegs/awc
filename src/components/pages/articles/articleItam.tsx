@@ -24,7 +24,9 @@ export default function ArticleItem({ item }: { item: any }) {
         {item.status}
       </th>
       <td className='px-6 py-2 hidden md:block'>
-        {item.createdAt} / {item.updatedAt}
+        {item.createdAt === item.updatedAt
+          ? new Intl.DateTimeFormat('fa-IR').format(new Date(item.createdAt))
+          : `${item.createdAt} + '/' + ${item.updatedAt}`}
       </td>
       <td className='text-center items-center'>
         <div className='flex justify-center items-center'>
