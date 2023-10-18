@@ -1,17 +1,12 @@
 import { Form, Formik } from 'formik'
+import useCategories from '../hooks/queries/categories'
 import ComboBox from '../shared/comboBox'
 import Input from '../shared/input'
 import MarkdownEditor from '../shared/markdownEditor'
 
-const categories = [
-  { id: '1', name: 'Durward Reynolds' },
-  { id: '2', name: 'Kenton Towne' },
-  { id: '3', name: 'Therese Wunsch' },
-  { id: '4', name: 'Benedict Kessler' },
-  { id: '5', name: 'Katelyn Rohan' },
-]
+export default function CreateArticleForm() {
+  const { categories, loading } = useCategories()
 
-export default function ArticleForm() {
   return (
     <>
       <Formik
@@ -21,7 +16,7 @@ export default function ArticleForm() {
           content: '',
         }}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
-          //   console.log(values)
+          console.log(values)
           //   window.location.reload()
           //   window.document.cookie = 'username=John Doe'
         }}
@@ -42,7 +37,7 @@ export default function ArticleForm() {
                 <div className='mb-6'>
                   <ComboBox
                     data={categories}
-                    filterField='name'
+                    filterField='title'
                     label='دسته بندی'
                     name='category'
                     placeholder='دسته بندی را وارد کنید'
