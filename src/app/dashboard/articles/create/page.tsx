@@ -1,5 +1,5 @@
 'use client'
-import ArticleForm from '@/components/forms/createArticleForm'
+import CreateArticleForm from '@/components/forms/createArticleForm'
 import DashboardLayout from '@/components/layout/dashboard'
 
 export default function CreateArticle() {
@@ -7,7 +7,7 @@ export default function CreateArticle() {
     <DashboardLayout>
       <section className='relative'>
         <div className='w-full p-5'>
-          <ArticleForm />
+          <CreateArticleForm />
         </div>
       </section>
     </DashboardLayout>

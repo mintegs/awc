@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { FiEdit2, FiTrash2 } from 'react-icons/fi'
 
 export default function ArticleItem({ item }: { item: any }) {
@@ -28,7 +29,7 @@ export default function ArticleItem({ item }: { item: any }) {
         {item.user.username}
       </th>
       <th className='px-6 py-2 font-medium whitespace-nowrap'>
-        <span className='bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300'>
+        <span className='bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300'>
           {getStatus(item.status)}
         </span>
       </th>
@@ -39,12 +40,12 @@ export default function ArticleItem({ item }: { item: any }) {
       </td>
       <td className='text-center items-center'>
         <div className='flex justify-center items-center'>
-          <button
-            // onClick={}
+          <Link
+            href={`/dashboard/articles/edit/${item._id}`}
             className='rounded-full hover:bg-blue-200 text-blue-400 hover:text-blue-600 p-1'
           >
             <FiEdit2 size={20} />
-          </button>
+          </Link>
           <button
             // onClick={() => deleteCategory(item._id)}
             className='rounded-full hover:bg-red-200 text-red-400 hover:text-red-600 p-1'

@@ -20,3 +20,20 @@ export default function useArticles() {
     error,
   }
 }
+
+export function useArticle(id: string) {
+  const { data, error } = useQuery<any, AxiosError>(
+    ['article', id],
+    async () => {
+      const { data } = await fetcher().get(`/admin/articles/${id}`)
+
+      return data.article
+    }
+  )
+
+  return {
+    article: data,
+    loading: !data && !error,
+    error,
+  }
+}
