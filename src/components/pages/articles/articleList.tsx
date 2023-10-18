@@ -1,10 +1,9 @@
 import useArticles from '@/components/hooks/queries/articles'
 import CategoryListSkeleton from '../skeletons/categoryListSkeleton'
-import ArticleItem from './articleItam'
 
 export default function ArticleList() {
   const { articles, loading } = useArticles()
-
+  console.log('articles', articles)
   if (loading) {
     return <CategoryListSkeleton />
   }
@@ -48,12 +47,12 @@ export default function ArticleList() {
             </tr>
           </thead>
           <tbody>
-            {articles.map((item: any) => (
+            {/* {articles.map((item: any) => (
               <ArticleItem
                 key={item.title}
                 item={item}
               />
-            ))}
+            ))} */}
           </tbody>
         </table>
       </div>
