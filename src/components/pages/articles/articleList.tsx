@@ -1,4 +1,14 @@
+import useArticles from '@/components/hooks/queries/articles'
+import CategoryListSkeleton from '../skeletons/categoryListSkeleton'
+import ArticleItem from './articleItam'
+
 export default function ArticleList() {
+  const { articles, loading } = useArticles()
+
+  if (loading) {
+    return <CategoryListSkeleton />
+  }
+
   return (
     <>
       <div className='relative overflow-x-auto shadow-md rounded-md'>
@@ -37,14 +47,14 @@ export default function ArticleList() {
               </th>
             </tr>
           </thead>
-          {/* <tbody>
-              {categories.map((item) => (
-                <CategoryItem
-                  key={item.title}
-                  item={item}
-                />
-              ))}
-            </tbody> */}
+          <tbody>
+            {articles.map((item: any) => (
+              <ArticleItem
+                key={item.title}
+                item={item}
+              />
+            ))}
+          </tbody>
         </table>
       </div>
       <div className='flex flex-col items-center my-5'>
