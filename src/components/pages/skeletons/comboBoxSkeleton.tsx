@@ -7,7 +7,7 @@ export default function ComboBoxSkeleton({ title, placeholder }: Props) {
     let elements = []
     for (let index = 1; index <= 3; index++) {
       elements.push(
-        <div className='h-5 w-full rounded-full bg-gray-400 animate-pulse'></div>
+        <div className='h-10 w-full rounded-md mb-1 bg-gray-400 animate-pulse'></div>
       )
     }
     return elements
@@ -19,7 +19,7 @@ export default function ComboBoxSkeleton({ title, placeholder }: Props) {
           {title}
         </h3>
         <input
-          className='w-full rounded-md border border-slate-700 py-3 px-5 bg-slate-700  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition'
+          className='w-full rounded-md border border-slate-600 py-3 px-5 bg-slate-600  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition'
           type='text'
           placeholder={placeholder}
           disabled
