@@ -44,10 +44,10 @@ export default function EditArticleForm() {
     <>
       <Formik
         initialValues={{
-          image: '',
-          title: '',
-          category: '',
-          content: '',
+          image: article?.image,
+          title: article?.title,
+          category: article?.category?._id,
+          content: article?.content,
         }}
         validationSchema={articleSchema}
         onSubmit={async (values) => {
