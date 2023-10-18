@@ -1,5 +1,6 @@
 import { Form, Formik } from 'formik'
 import useCategories from '../hooks/queries/categories'
+import ComboBoxSkeleton from '../pages/skeletons/comboBoxSkeleton'
 import ComboBox from '../shared/comboBox'
 import Input from '../shared/input'
 import MarkdownEditor from '../shared/markdownEditor'
@@ -11,6 +12,7 @@ export default function CreateArticleForm() {
     <>
       <Formik
         initialValues={{
+          image: '',
           title: '',
           category: '',
           content: '',
@@ -27,16 +29,27 @@ export default function CreateArticleForm() {
               <div className='mt-4'>
                 <div className='mb-6'>
                   <Input
+                    name='image'
+                    type='url'
+                    placeholder='عکس مقاله را وارد کنید'
+                    isLtr
+                    classNames='w-full rounded-md border border-slate-700 py-3 px-5 bg-slate-700  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition'
+                  />
+                </div>
+                <div className='mb-6'>
+                  <Input
                     name='title'
                     type='text'
-                    label='عنوان'
                     placeholder='عنوان مقاله را وارد کنید'
                     classNames='w-full rounded-md border border-slate-700 py-3 px-5 bg-slate-700  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition'
                   />
                 </div>
                 <div className='mb-6'>
                   {loading ? (
-                    <p>loading....</p>
+                    <ComboBoxSkeleton
+                      title='دسته بندی'
+                      placeholder='دسته بندی را وارد کنید'
+                    />
                   ) : (
                     <ComboBox
                       data={categories}
