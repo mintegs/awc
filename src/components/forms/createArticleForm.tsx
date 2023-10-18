@@ -1,5 +1,4 @@
 'use client'
-import { ObjectId } from 'bson'
 import { Form, Formik } from 'formik'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -11,6 +10,7 @@ import ComboBox from '../shared/comboBox'
 import Input from '../shared/input'
 import MarkdownEditor from '../shared/markdownEditor'
 import customToaster from '../shared/notify'
+import SpinnerSvg from '../svg/spinnerSvg'
 
 const articleSchema = yup.object().shape({
   title: yup
@@ -22,15 +22,7 @@ const articleSchema = yup.object().shape({
     .string()
     .required('عکس مقاله را وارد کنید')
     .url('فرمت عکس نامعتبر است'),
-  category: yup
-    .string()
-    .required()
-    .test({
-      message: 'دسته انتخاب شده معتبر نمی‌باشد',
-      test: (value: string) => {
-        return ObjectId.isValid(value)
-      },
-    }),
+  category: yup.string().required('دسته مقاله را وارد کنید'),
   content: yup
     .string()
     .required()
@@ -52,7 +44,7 @@ export default function CreateArticleForm() {
           content: '',
         }}
         validationSchema={articleSchema}
-        onSubmit={async (values, { setSubmitting, resetForm }) => {
+        onSubmit={async (values) => {
           console.log(values)
           mutate(values, {
             onSuccess() {
@@ -60,9 +52,6 @@ export default function CreateArticleForm() {
               push('/dashboard/articles')
             },
             onError(error: any) {
-              // Set submitting value
-              setSubmitting(false)
-
               // Set notify
               customToaster(error.response.data.message, 'bg-red-700')
             },
@@ -71,7 +60,7 @@ export default function CreateArticleForm() {
           //   window.document.cookie = 'username=John Doe'
         }}
       >
-        {({ dirty, isValid, isSubmitting }) => (
+        {({ dirty, isValid }) => (
           <>
             <Form>
               <div className='mt-4'>
@@ -123,7 +112,11 @@ export default function CreateArticleForm() {
                     } h-10 w-32 bg-blue-600 flex justify-center items-center font-medium text-base rounded-md group text-white border-2 border-blue-600 hover:bg-slate-700 hover:text-blue-400 hover:border-blue-500 transition duration-200 shadow-lg`}
                     disabled={!(dirty && isValid)}
                   >
-                    ثبت
+                    {isLoading ? (
+                      <SpinnerSvg classNames={`h-5 w-5 text-white`} />
+                    ) : (
+                      'ثبت'
+                    )}
                   </button>
                   <Link
                     href='/dashboard/articles'
