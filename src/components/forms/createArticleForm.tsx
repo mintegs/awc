@@ -35,13 +35,17 @@ export default function CreateArticleForm() {
                   />
                 </div>
                 <div className='mb-6'>
-                  <ComboBox
-                    data={categories}
-                    filterField='title'
-                    label='دسته بندی'
-                    name='category'
-                    placeholder='دسته بندی را وارد کنید'
-                  />
+                  {loading ? (
+                    <p>loading....</p>
+                  ) : (
+                    <ComboBox
+                      data={categories}
+                      filterField='title'
+                      label='دسته بندی'
+                      name='category'
+                      placeholder='دسته بندی را وارد کنید'
+                    />
+                  )}
                 </div>
                 <div className='mb-6'>
                   <MarkdownEditor name='content' />
