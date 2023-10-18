@@ -9,7 +9,7 @@ export default function useArticles() {
     queryFn: async () => {
       const { data } = await fetcher().get('/admin/articles')
 
-      return data.categories
+      return data.articles
     },
     retryOnMount: false,
   })
