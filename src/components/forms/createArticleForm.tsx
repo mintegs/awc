@@ -35,6 +35,7 @@ export default function CreateArticleForm() {
                     placeholder='عکس مقاله را وارد کنید'
                     isLtr
                     withLabel
+                    label='عکس'
                     classNames='w-full rounded-md border border-slate-700 py-3 px-5 bg-slate-700  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition'
                   />
                 </div>
@@ -43,6 +44,7 @@ export default function CreateArticleForm() {
                     name='title'
                     type='text'
                     withLabel
+                    label='عنوان'
                     placeholder='عنوان مقاله را وارد کنید'
                     classNames='w-full rounded-md border border-slate-700 py-3 px-5 bg-slate-700  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition'
                   />
@@ -66,19 +68,20 @@ export default function CreateArticleForm() {
                 <div className='mb-6'>
                   <MarkdownEditor name='content' />
                 </div>
-
-                <button
-                  type='submit'
-                  className='h-10 w-32 bg-blue-600 flex justify-center items-center font-medium text-base rounded-md group text-white border-2 border-blue-600 hover:bg-slate-700 hover:text-blue-400 hover:border-blue-500 transition duration-200 shadow-lg'
-                >
-                  ثبت
-                </button>
-                <Link
-                  href='/dashboard/articles'
-                  className='h-10 w-32 bg-yellow-600 flex justify-center items-center font-medium text-base rounded-md group text-white border-2 border-yellow-600 hover:bg-slate-700 hover:text-yellow-400 hover:border-yellow-500 transition duration-200 shadow-lg mr-2'
-                >
-                  انصراف
-                </Link>
+                <div className='flex justify-between'>
+                  <button
+                    type='submit'
+                    className='h-10 w-32 bg-blue-600 flex justify-center items-center font-medium text-base rounded-md group text-white border-2 border-blue-600 hover:bg-slate-700 hover:text-blue-400 hover:border-blue-500 transition duration-200 shadow-lg'
+                  >
+                    ثبت
+                  </button>
+                  <Link
+                    href='/dashboard/articles'
+                    className='h-10 w-32 bg-yellow-600 flex justify-center items-center font-medium text-base rounded-md group text-white border-2 border-yellow-600 hover:bg-slate-700 hover:text-yellow-400 hover:border-yellow-500 transition duration-200 shadow-lg'
+                  >
+                    انصراف
+                  </Link>
+                </div>
               </div>
             </Form>
           </>

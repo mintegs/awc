@@ -6,7 +6,7 @@ export default function CreateArticle() {
   return (
     <DashboardLayout>
       <section className='relative'>
-        <div className='w-full p-5 bg-slate-500 rounded-md'>
+        <div className='w-full p-5'>
           <ArticleForm />
         </div>
       </section>
