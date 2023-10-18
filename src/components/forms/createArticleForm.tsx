@@ -1,4 +1,5 @@
 import { Form, Formik } from 'formik'
+import Link from 'next/link'
 import useCategories from '../hooks/queries/categories'
 import ComboBoxSkeleton from '../pages/skeletons/comboBoxSkeleton'
 import ComboBox from '../shared/comboBox'
@@ -33,6 +34,7 @@ export default function CreateArticleForm() {
                     type='url'
                     placeholder='عکس مقاله را وارد کنید'
                     isLtr
+                    withLabel
                     classNames='w-full rounded-md border border-slate-700 py-3 px-5 bg-slate-700  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition'
                   />
                 </div>
@@ -40,6 +42,7 @@ export default function CreateArticleForm() {
                   <Input
                     name='title'
                     type='text'
+                    withLabel
                     placeholder='عنوان مقاله را وارد کنید'
                     classNames='w-full rounded-md border border-slate-700 py-3 px-5 bg-slate-700  text-white text-base outline-none focus-visible:shadow-none focus:border-blue-500 focus:border-2 transition'
                   />
@@ -70,6 +73,12 @@ export default function CreateArticleForm() {
                 >
                   ثبت
                 </button>
+                <Link
+                  href='/dashboard/articles'
+                  className='h-10 w-32 bg-yellow-600 flex justify-center items-center font-medium text-base rounded-md group text-white border-2 border-yellow-600 hover:bg-slate-700 hover:text-yellow-400 hover:border-yellow-500 transition duration-200 shadow-lg mr-2'
+                >
+                  انصراف
+                </Link>
               </div>
             </Form>
           </>
