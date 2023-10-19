@@ -1,3 +1,6 @@
+import { useRemoveArticleMutation } from '@/components/hooks/mutations/mutateArticle'
+import customToaster from '@/components/shared/notify'
+import SpinnerSvg from '@/components/svg/spinnerSvg'
 import Link from 'next/link'
 import { FiEdit2, FiTrash2 } from 'react-icons/fi'
 
@@ -13,6 +16,19 @@ export default function ArticleItem({ item }: { item: any }) {
       default:
         return 'نامعلوم'
     }
+  }
+
+  const { mutate, isLoading } = useRemoveArticleMutation()
+
+  function deleteArticle(title: string) {
+    mutate(title, {
+      onSuccess() {
+        customToaster('دسته باموفقیت حذف شد', 'bg-green-700', true)
+      },
+      onError(error: any) {
+        customToaster(error.response.data.message, 'bg-red-700')
+      },
+    })
   }
 
   return (
@@ -47,16 +63,15 @@ export default function ArticleItem({ item }: { item: any }) {
             <FiEdit2 size={20} />
           </Link>
           <button
-            // onClick={() => deleteCategory(item._id)}
+            onClick={() => deleteArticle(item.title)}
             className='rounded-full hover:bg-red-200 text-red-400 hover:text-red-600 p-1'
-            // disabled={isLoading}
+            disabled={isLoading}
           >
-            {/* {isLoading ? (
+            {isLoading ? (
               <SpinnerSvg classNames={`h-5 w-5 text-white`} />
             ) : (
               <FiTrash2 size={20} />
-            )} */}
-            <FiTrash2 size={20} />
+            )}
           </button>
         </div>
       </td>

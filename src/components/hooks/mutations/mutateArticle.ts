@@ -51,15 +51,15 @@ export function useRemoveArticleMutation() {
   const queryClient = useQueryClient()
 
   return useMutation(
-    (id: string) => {
-      return fetcher().delete(`/admin/articles/${id}`)
+    (title: string) => {
+      return fetcher().delete(`/user/articles/${title}`)
     },
     {
       onSuccess(data, variables: any) {
         const previousArticles = queryClient.getQueryData(['articles'])
 
         queryClient.setQueryData(['articles'], (old: any) =>
-          old.filter((item: any) => item._id !== variables)
+          old.filter((item: any) => item.title !== variables)
         )
 
         return { previousArticles }
