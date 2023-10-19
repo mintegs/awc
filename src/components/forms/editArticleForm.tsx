@@ -106,7 +106,7 @@ export default function EditArticleForm() {
                       className={`${
                         !(dirty && isValid) ? 'cursor-not-allowed' : ''
                       } h-10 w-32 bg-blue-600 flex justify-center items-center font-medium text-base rounded-md group text-white border-2 border-blue-600 hover:bg-slate-700 hover:text-blue-400 hover:border-blue-500 transition duration-200 shadow-lg`}
-                      disabled={!(dirty && isValid)}
+                      disabled={!isValid}
                     >
                       {/* {isLoading ? (
                       <SpinnerSvg classNames={`h-5 w-5 text-white`} />
