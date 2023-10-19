@@ -51,7 +51,7 @@ export default function EditArticleForm() {
     <>
       <Formik
         initialValues={{
-          id: article?._id,
+          id: article?.title,
           image: article?.image,
           title: article?.title,
           category: article?.category?._id,
