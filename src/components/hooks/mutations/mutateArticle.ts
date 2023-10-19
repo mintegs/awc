@@ -37,7 +37,7 @@ export function useEditArticleMutation() {
 
   return useMutation(
     (payload: payload) => {
-      return fetcher().put(`/admin/articles/${payload.id}`, payload)
+      return fetcher().put(`/user/articles/${payload.id}`, payload)
     },
     {
       onSuccess() {

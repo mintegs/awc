@@ -30,8 +30,7 @@ const articleSchema = yup.object().shape({
     .test({
       message: 'متن کمتر از ۵۰۰ کاراکتر نمی‌تواند باشد',
       test: (value) => removeMarkdown(value).length > 500,
-    })
-    .min(500, 'متن کمتر از ۵۰۰ کاراکتر نمی‌تواند باشد'),
+    }),
 })
 
 export default function CreateArticleForm() {
@@ -113,9 +112,9 @@ export default function CreateArticleForm() {
                   <button
                     type='submit'
                     className={`${
-                      !(dirty && isValid) ? 'cursor-not-allowed' : ''
+                      !isValid || isLoading ? 'cursor-not-allowed' : ''
                     } h-10 w-32 bg-blue-600 flex justify-center items-center font-medium text-base rounded-md group text-white border-2 border-blue-600 hover:bg-slate-700 hover:text-blue-400 hover:border-blue-500 transition duration-200 shadow-lg`}
-                    disabled={!(dirty && isValid)}
+                    disabled={!isValid || isLoading}
                   >
                     {isLoading ? (
                       <SpinnerSvg classNames={`h-5 w-5 text-white`} />

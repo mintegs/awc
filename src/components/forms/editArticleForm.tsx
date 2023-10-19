@@ -3,12 +3,16 @@ import { Form, Formik } from 'formik'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import * as yup from 'yup'
+import { useEditArticleMutation } from '../hooks/mutations/mutateArticle'
 import { useArticle } from '../hooks/queries/articles'
 import useCategories from '../hooks/queries/categories'
 import ComboBoxSkeleton from '../pages/skeletons/comboBoxSkeleton'
 import ComboBox from '../shared/comboBox'
 import Input from '../shared/input'
 import MarkdownEditor from '../shared/markdownEditor'
+import removeMarkdown from '../shared/markdownEditor/convertToText'
+import customToaster from '../shared/notify'
+import SpinnerSvg from '../svg/spinnerSvg'
 
 const articleSchema = yup.object().shape({
   title: yup
@@ -24,14 +28,17 @@ const articleSchema = yup.object().shape({
   content: yup
     .string()
     .required()
-    .min(500, 'متن کمتر از ۵۰۰ کاراکتر نمی‌تواند باشد'),
+    .test({
+      message: 'متن کمتر از ۵۰۰ کاراکتر نمی‌تواند باشد',
+      test: (value) => removeMarkdown(value).length > 500,
+    }),
 })
 
 export default function EditArticleForm() {
   const { categories, loading } = useCategories()
   const params = useParams()
   const { article, loading: articleLoading } = useArticle(params.id as string)
-
+  const { mutate, isLoading } = useEditArticleMutation()
   const { push } = useRouter()
 
   if (articleLoading) {
@@ -44,6 +51,7 @@ export default function EditArticleForm() {
     <>
       <Formik
         initialValues={{
+          id: article?._id,
           image: article?.image,
           title: article?.title,
           category: article?.category?._id,
@@ -51,7 +59,15 @@ export default function EditArticleForm() {
         }}
         validationSchema={articleSchema}
         onSubmit={async (values) => {
-          console.log(values)
+          mutate(values, {
+            onSuccess: () => {
+              push('/dashboard/articles')
+            },
+            onError: (error: any) => {
+              // Set notify
+              customToaster(error.response.data.message, 'bg-red-700')
+            },
+          })
         }}
       >
         {({ dirty, isValid, values }) => {
@@ -104,16 +120,15 @@ export default function EditArticleForm() {
                     <button
                       type='submit'
                       className={`${
-                        !(dirty && isValid) ? 'cursor-not-allowed' : ''
+                        !isValid || isLoading ? 'cursor-not-allowed' : ''
                       } h-10 w-32 bg-blue-600 flex justify-center items-center font-medium text-base rounded-md group text-white border-2 border-blue-600 hover:bg-slate-700 hover:text-blue-400 hover:border-blue-500 transition duration-200 shadow-lg`}
-                      disabled={!isValid}
+                      disabled={!isValid || isLoading}
                     >
-                      {/* {isLoading ? (
-                      <SpinnerSvg classNames={`h-5 w-5 text-white`} />
-                    ) : (
-                      'ویرایش'
-                    )} */}
-                      ویرایش
+                      {isLoading ? (
+                        <SpinnerSvg classNames={`h-5 w-5 text-white`} />
+                      ) : (
+                        'ویرایش'
+                      )}
                     </button>
                     <Link
                       href='/dashboard/articles'
