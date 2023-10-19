@@ -9,6 +9,7 @@ import ComboBoxSkeleton from '../pages/skeletons/comboBoxSkeleton'
 import ComboBox from '../shared/comboBox'
 import Input from '../shared/input'
 import MarkdownEditor from '../shared/markdownEditor'
+import removeMarkdown from '../shared/markdownEditor/convertToText'
 import customToaster from '../shared/notify'
 import SpinnerSvg from '../svg/spinnerSvg'
 
@@ -26,6 +27,10 @@ const articleSchema = yup.object().shape({
   content: yup
     .string()
     .required()
+    .test({
+      message: 'متن کمتر از ۵۰۰ کاراکتر نمی‌تواند باشد',
+      test: (value) => removeMarkdown(value).length > 500,
+    })
     .min(500, 'متن کمتر از ۵۰۰ کاراکتر نمی‌تواند باشد'),
 })
 
